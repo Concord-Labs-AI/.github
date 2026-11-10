@@ -1,0 +1,57 @@
+<!doctype html>
+<!-- Source for profile/banner.png. Regenerate with:
+     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --hide-scrollbars \
+       --window-size=1600,400 --screenshot=profile/banner.png .design/banner.html -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;800&family=Outfit:wght@300&family=JetBrains+Mono:wght@400&display=block" rel="stylesheet">
+<style>
+  html, body { margin:0; width:1600px; height:400px; overflow:hidden; }
+  body {
+    background:
+      radial-gradient(ellipse 900px 420px at 50% 38%, rgba(139,92,246,.22), transparent 70%),
+      radial-gradient(ellipse 600px 300px at 12% 110%, rgba(6,182,212,.10), transparent 70%),
+      #030712;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    position:relative;
+  }
+  #stars { position:absolute; inset:0; }
+  .lockup { display:flex; align-items:center; gap:30px; position:relative; }
+  .word { font-size:76px; line-height:1; white-space:nowrap; }
+  .c { font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; color:#f1f5f9; letter-spacing:2px; }
+  .l { font-family:'Outfit',sans-serif; font-weight:300; color:#94a3b8; margin-left:18px; }
+  .a { font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; color:#8b5cf6; margin-left:18px; }
+  .tag { position:relative; margin-top:40px; font-family:'JetBrains Mono',monospace; font-size:22px; letter-spacing:.42em; padding-left:.42em; color:#a78bfa; }
+</style>
+</head>
+<body>
+<svg id="stars" width="1600" height="400"></svg>
+<div class="lockup">
+  <svg width="112" height="112" viewBox="0 0 44 44" fill="none">
+    <path d="M22 3C11.507 3 3 11.507 3 22s8.507 19 19 19" stroke="#8b5cf6" stroke-width="3.2" stroke-linecap="round"/>
+    <path d="M22 41c10.493 0 19-8.507 19-19S32.493 3 22 3" stroke="#a78bfa" stroke-width="3.2" stroke-linecap="round" stroke-dasharray="4.5 5.5"/>
+    <circle cx="22" cy="22" r="3.6" fill="#8b5cf6"/>
+  </svg>
+  <div class="word"><span class="c">CONCORD</span><span class="l">LABS</span><span class="a">AI</span></div>
+</div>
+<div class="tag">AN APPLIED AI LAB</div>
+<script>
+  // Fixed seed so the starfield is identical on every render.
+  let s = 7;
+  const rand = () => (s = (s * 16807) % 2147483647) / 2147483647;
+  const svg = document.getElementById('stars');
+  for (let i = 0; i < 170; i++) {
+    const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    c.setAttribute('cx', (rand() * 1600).toFixed(1));
+    c.setAttribute('cy', (rand() * 400).toFixed(1));
+    c.setAttribute('r', (rand() < 0.88 ? 0.6 + rand() * 0.6 : 1.3 + rand() * 0.6).toFixed(2));
+    const tint = rand();
+    c.setAttribute('fill', tint < 0.08 ? '#a78bfa' : tint < 0.13 ? '#67e8f9' : '#ffffff');
+    c.setAttribute('opacity', (0.25 + rand() * 0.55).toFixed(2));
+    svg.appendChild(c);
+  }
+</script>
+</body>
+</html>
